@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chocl'adore</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+        body{
+            margin:0;
+            padding:0;
+            background-color: #f5f4eb;
+        }
+
+        section{
+            padding-bottom:2dvh;
+            display:none;
+        }
+
+        #navbar{
+            width:98dvw;
+            height:5vw;
+            border-radius:15px;
+            position:fixed;
+            z-index:99;
+            left:1dvw;
+            top:1dvw;
+            background-color: rgba(255, 255, 255, 0.771);
+            transition: 0.2s;
+            backdrop-filter: blur(5px);
+            outline: 3px black solid;
+        }
+
+        #logo{
+            height:4.2vw;
+            width:4.2vw;
+            margin-left:0.4vw;
+            margin-top:0.4vw;
+            border-radius:12px;
+            background:url(logocirc.png);
+            background-size: cover;
+            background-position: center;
+            opacity:0.771;
+            /*outline: 3px solid black;*/   
+        }
+        #navtextdiv{
+            font-family: "Inter", sans-serif;
+            font-weight: 500;
+            font-size:1.5vw;
+            height:5vw;
+            display:flex;
+            flex-direction: row;
+            align-items:center;
+            justify-content: center;
+            gap:15vw;
+            position:absolute;
+            left:50%;
+            transform: translate(-50%,0%);
+            top:0%;
+        }
+
+        .navtext{
+            margin: 0;
+            font-weight: inherit;
+            cursor:pointer;
+            transition:0.3s;
+        }
+
+
+        .accenttext{
+            color:#e97132;
+        }
+
+        #hero{
+            width:50vw;
+            text-align:left;
+            position:absolute;
+            left:50%;
+            top:47%;
+            transform: translate(-50%,-50%);
+        }
+
+        #hero h1{
+            font-weight: 400;
+            font-family: "Inter", sans-serif;
+            font-size: 8vw;
+            margin:0;
+        }
+        #hero h2{
+            font-weight: 400;
+            font-family: "Inter", sans-serif;
+            font-size: 3vw;
+            margin:0;
+            margin-left:8px;
+        }
+
+        #realisatiesdiv{
+            display:flex;
+            flex-wrap:wrap;
+            gap:2vw;
+            width:98dvw;
+            padding-left:1dvw;
+            padding-right:1dvw;
+            padding-top:15dvh;
+            justify-content:center;
+        }
+
+        .realisatie{
+            width:22vw;
+            height:18vw;
+            border-radius:15px;
+            outline:1.7px black solid;
+        }
+
+        #verhaal{
+            font-family: "Inter", sans-serif;
+            font-weight:500;
+            font-size:1.3vw;
+            width:90vw;
+        }
+
+        #verhaaldiv{
+            font-weight:500;
+            position:absolute;
+            left:50%;
+            top:94dvh;
+            transform: translate(-50%, 0%);
+            width:93dvw;
+            padding:2vw;
+            border-radius:15px;
+            background-color:white;
+            border:1.7px solid black;
+        }
+
+        #home{
+            height:184dvh;
+        }
+
+        #contactinfo{
+            position:absolute;
+            left:30%;
+            top:50%;
+            transform: translate(-50%,-50%);
+            width:30vw;
+            font-weight: 400;
+            font-family: "Inter", sans-serif;
+        }
+
+        a{
+            text-decoration: none;
+            color:black;
+        }
+
+        #kaart{
+            outline:1.7px solid black;
+            width:40vw;
+            border-radius:15px;
+            overflow:hidden;
+            position:absolute;
+            top:50%;
+            left:70dvw;
+            transform: translate(-50%,-50%);
+            padding:0;
+            margin:0;
+            max-height:55dvh;
+        }
+
+        #kaart iframe{
+            width:100%;
+            height:56dvh;
+        }
+
+        #questions{
+            width:80dvw;
+            max-height:70dvh;
+            position:absolute;
+            left:50%;
+            top:50%;
+            transform:translate(-50%,-50%);
+            transition:0.3s;
+        }
+
+        summary:after{
+            content: "\002B";
+            position:absolute;
+            right:1%;
+            transition: 0.3s;
+            cursor:pointer;
+        }
+
+        summary:hover{
+            background-color:rgb(245, 245, 245);
+            transition:0.3s;
+        }
+
+        .antwoord:hover{
+            background-color:rgb(245, 245, 245);
+            transition:0.3s;
+        }
+
+        details[open] summary:after{
+            transform:rotate(45deg);
+            transition: 0.3s;
+        }
+
+        summary{
+            list-style: none;
+            padding:1vw;
+            background-color:white;
+            border-radius:5px;
+            outline:1.7px solid black;
+            font-size:1.5vw;
+            font-weight: inherit;
+            font-weight: 500;
+            font-family: "Inter", sans-serif;
+            transition:0.2s;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        details{
+            font-size:1.5vw;
+            font-weight: inherit;
+            font-weight: 500;
+            font-family: "Inter", sans-serif;
+            /*background-color:white;*/
+            transition:0.2s;
+            display:flex;
+            justify-content:center;
+        }
+
+        details[open] div{
+            background-color:rgba(255, 255, 255, 0.923);
+            width:90%;
+            margin-left:calc(10% - 2vw);
+            padding:1vw;
+            outline:1.7px solid black;
+            border-radius:5px;
+            margin-top:0.8vw;
+        }
+
+        #hamburger{
+            background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/1200px-Hamburger_icon.svg.png');
+            background-size: cover;
+            width:7vw;
+            height:7vw;
+            position:fixed;
+            right:6vw;
+            top:6vw;
+            display:none;
+            z-index:999;
+        }
+
+        #mobilemenu{
+            display:none;
+        }
+
+        #blur{
+            display:none;
+        }
+
+        @media only screen and (max-width: 740px) {
+            #navbar{
+                display:none;
+            }
+
+        #hero{
+            width:auto;
+        }
+
+        #home h1{
+            font-size: 13vw;
+            margin:0;
+        }
+        #hero h2{
+            font-size: 6vw;
+            margin-left:2px;
+        }
+        #verhaal{
+            font-family: "Inter", sans-serif;
+            font-weight:inherit;
+            font-size:4vw;
+            width:90vw;
+        }
+
+        #verhaaldiv{
+            font-weight:500;
+            position:absolute;
+            left:50%;
+            top:94dvh;
+            transform: translate(-50%, 0%);
+            width:93dvw;
+            padding:2vw;
+            border-radius:15px;
+            background-color:white;
+            border:1.7px solid black;
+        }
+
+        #home{
+            height:205dvh;
+        }
+        #realisaties{
+            height:280dvh;
+        }
+        #contact{
+            height:152dvh;
+        }
+        section{
+            padding:0;
+        }
+        #realisatiesdiv{
+            display:flex;
+            flex-wrap:wrap;
+            gap:2vw;
+            width:99dvw;
+            padding-left:0.1dvw;
+            padding-right:0.1dvw;
+            padding-top:7dvh;
+            justify-content:center;
+        }
+
+        .realisatie{
+            width:44vw;
+            height:34vw;
+            border-radius:15px;
+            outline:1.7px black solid;
+        }
+        #kaart{
+            outline:1.7px solid black;
+            width:95dvw;
+            border-radius:15px;
+            overflow:hidden;
+            position:absolute;
+            top:120%;
+            left:50%;
+            transform: translate(-50%,-50%);
+            padding:0;
+            margin:0;
+            max-height:55dvh;
+        }
+
+        #kaart iframe{
+            width:100%;
+            height:56dvh;
+        }
+        #questions{
+            width:90dvw;
+            max-height:80dvh;
+        }
+        summary:hover & .antwoord:hover{
+            background-color: white;
+        }
+        summary{
+            font-size:3vw;
+            padding-top:3vw;
+            padding-bottom:3vw;
+        }
+        details{
+            font-size:3vw;
+        }
+        details[open] div{
+            padding:1vw;
+            padding-top:3vw;
+            padding-bottom:3vw;
+            margin-top:1.5vw;
+        }
+        #hamburger{
+            display:flex;
+            z-index:999;
+        }
+        #mobilemenu{
+            width:95dvw;
+            height:95dvh;
+            border-radius:15px;
+            outline:1px solid black;
+            position:fixed;
+            left:50%;
+            top:50%;
+            transform: translate(-50%,-50%);
+            background-color:white;
+            display:flex;
+            z-index:998;
+            flex-direction:column;
+            gap:5vw;
+            justify-content: center;
+            align-items: center;
+        }
+        #mobilemenu h1{
+            font-weight: inherit;
+            font-weight: 500;
+            font-family: "Inter", sans-serif;
+            font-size:10vw;
+            cursor:pointer;
+        }
+        #blur{
+            background-color: rgba(255, 255, 255, 0.771);
+            backdrop-filter: blur(5px);
+            display:none;
+            z-index:998;
+            width:100dvw;
+            height:100dvh;
+            position:fixed;
+            left:0;
+            top:0;
+        }
+        }
+    </style>
+</head>
+<body onload="sectionchange('home');">
+    <div id="navbar">
+        <div id="logo"></div>
+        <div id="navtextdiv">
+            <h3 class="navtext" id="homenav" onclick="sectionchange('home')" >Home</h3>
+            <h3 class="navtext" id="realisatiesnav" onclick="sectionchange('realisaties')" >Realisaties</h3>
+            <h3 class="navtext" id="contactnav" onclick="sectionchange('contact')" >Contact</h3>
+            <h3 class="navtext" id="faqnav" onclick="sectionchange('faq')" >FAQ</h3>
+        </div>
+    </div>
+    <div id="hamburger" onclick="openmenu()"></div>
+    <div id="blur" onclick="openmenu()">
+        <div id="mobilemenu">
+            <h1 id="mobilehomenav" onclick="sectionchange('home')" >Home</h1>
+            <h1 id="mobilerealisatiesnav" onclick="sectionchange('realisaties')" >Realisaties</h1>
+            <h1 id="mobilecontactnav" onclick="sectionchange('contact')" >Contact</h1>
+            <h1 id="mobilefaqnav" onclick="sectionchange('faq')" >FAQ</h1>
+        </div>
+    </div>
+
+
+    <section id="home">
+        <div id="hero">
+        <h1>Chocl'adore</h1>
+        <h2>Dol Op <span class="accenttext">Chocolade</span></h2>
+        </div>
+        <br>
+        <div id="verhaaldiv">
+        <h2 id="verhaal">
+        Na het volgen van een chocoladeworkshop ging voor mij een nieuwe wereld open,<br>
+        een wereld die mij fascineerde, die ik wilde ontdekken.<br>
+        Het volgen van een opleiding en veel experimenteren brachten me tot waar ik nu sta:<br>
+        aan het begin van een nieuw avontuur.<br><br><br><br><br><br>
+
+
+        J’adore le chocolat…. Chocl’adore dus!<br>
+        Een naam die m’n jongste zoon Wout bedacht. Als extra verrassing had hij er een logo bij ontworpen.<br>
+        Het logo is dus niet zomaar een logo maar wel één met een heel persoonlijke en emotionele betekenis.<br>
+        Ik ben heel gelukkig dat ik vanaf nu mijn passie voor het onderwijs kan combineren met mijn passie voor chocolade.<br><br><br><br><br><br>
+
+
+
+
+
+
+        Tijdens m’n vrije tijd maak ik graag chocolade op bestelling voor jullie.<br>
+        Ik hoop jullie ooit te mogen verwennen met één van mijn pralines of creaties!<br><br><br><br><br><br>
+
+
+
+        Zoete groetjes<br>
+        Tine
+        </h2>
+        </div>
+    </section>
+    <section id="realisaties">
+        <div id="realisatiesdiv">
+            <div class="realisatie" style="background:url('https://impro.usercontent.one/appid/oneComWsb/domain/chocladore.be/media/chocladore.be/onewebmedia/web.jpg?etag=%2210d18-62128e08%22&sourceContentType=image%2Fjpeg&quality=85');background-size:cover;"></div>
+            <div class="realisatie" style="background: url('https://impro.usercontent.one/appid/oneComWsb/domain/chocladore.be/media/chocladore.be/onewebmedia/web%205.jpg?etag=%2251d81-62128e2a%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=1500,1646&quality=85');background-size:cover;"></div>
+            <div class="realisatie" style="background: url('https://impro.usercontent.one/appid/oneComWsb/domain/chocladore.be/media/chocladore.be/onewebmedia/web10.jpg?etag=%22252e1-62128e17%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=2000,1211&quality=85');background-size:cover;"></div>
+            <div class="realisatie" style="background: url('https://impro.usercontent.one/appid/oneComWsb/domain/chocladore.be/media/chocladore.be/onewebmedia/web11.jpg?etag=%222253a-62128e19%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=1000,743&quality=85');background-size:cover;"></div>
+            <div class="realisatie" style="background: url('https://impro.usercontent.one/appid/oneComWsb/domain/chocladore.be/media/chocladore.be/onewebmedia/web12.jpg?etag=%22444e9-62128e33%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=1500,1819&quality=85');background-size:cover;"></div>
+            <div class="realisatie" style="background: url('https://impro.usercontent.one/appid/oneComWsb/domain/chocladore.be/media/chocladore.be/onewebmedia/web13.jpg?etag=%223d4e2-62128e35%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=1500,1819&quality=85');background-size:cover;"></div>
+            <div class="realisatie" style="background: url('https://impro.usercontent.one/appid/oneComWsb/domain/chocladore.be/media/chocladore.be/onewebmedia/web14.jpg?etag=%221d2f8-62128e1a%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=1000,1095&quality=85');background-size:cover;"></div>
+            <div class="realisatie" style="background: url('https://impro.usercontent.one/appid/oneComWsb/domain/chocladore.be/media/chocladore.be/onewebmedia/web15.jpg?etag=%2243079-62128e38%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=1500,1646&quality=85');background-size:cover;"></div>
+            <div class="realisatie" style="background: url('https://impro.usercontent.one/appid/oneComWsb/domain/chocladore.be/media/chocladore.be/onewebmedia/web20.jpg?etag=%2248477-62128e3d%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=2000,1791&quality=85');background-size:cover;"></div>
+            <div class="realisatie" style="background: url('https://impro.usercontent.one/appid/oneComWsb/domain/chocladore.be/media/chocladore.be/onewebmedia/web19.jpg?etag=%2224331-62128e1d%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=2000,1844&quality=85');background-size:cover;"></div>
+            <div class="realisatie" style="background: url('https://impro.usercontent.one/appid/oneComWsb/domain/chocladore.be/media/chocladore.be/onewebmedia/web18.jpg?etag=%2215cfc-62128e1b%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=1000,642&quality=85');background-size:cover;"></div>
+            <div class="realisatie" style="background: url('https://impro.usercontent.one/appid/oneComWsb/domain/chocladore.be/media/chocladore.be/onewebmedia/web17.jpg?etag=%224c70c-62128e3b%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=2000,1582&quality=85');background-size:cover;"></div>
+            <div class="realisatie" style="background: url('https://impro.usercontent.one/appid/oneComWsb/domain/chocladore.be/media/chocladore.be/onewebmedia/web16.jpg?etag=%223a630-62128e3a%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=1500,1646&quality=85');background-size:cover;"></div>
+            <div class="realisatie" style="background: url('https://impro.usercontent.one/appid/oneComWsb/domain/chocladore.be/media/chocladore.be/onewebmedia/web21.jpg?etag=%223fc78-62128e3e%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=2000,1500&quality=85');background-size:cover;"></div>
+            <div class="realisatie" style="background: url('https://impro.usercontent.one/appid/oneComWsb/domain/chocladore.be/media/chocladore.be/onewebmedia/web22.jpg?etag=%221c35f-62128e1e%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=1000,999&quality=85');background-size:cover;"></div>
+            <div class="realisatie" style="background: url('https://impro.usercontent.one/appid/oneComWsb/domain/chocladore.be/media/chocladore.be/onewebmedia/web23.jpg?etag=%22350fb-62128e40%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=2000,1389&quality=85');background-size:cover;"></div>
+            <div class="realisatie" style="background: url('https://impro.usercontent.one/appid/oneComWsb/domain/chocladore.be/media/chocladore.be/onewebmedia/web24.jpg?etag=%2229c8a-62128e21%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=1000,1100&quality=85');background-size:cover;"></div>
+            <div class="realisatie" style="background: url('https://impro.usercontent.one/appid/oneComWsb/domain/chocladore.be/media/chocladore.be/onewebmedia/web25.jpg?etag=%221a772-62128e22%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=1000,898&quality=85');background-size:cover;"></div>
+            <div class="realisatie" style="background: url('https://impro.usercontent.one/appid/oneComWsb/domain/chocladore.be/media/chocladore.be/onewebmedia/web26.jpg?etag=%22addd-62128e05%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=1000,667&quality=85');background-size:cover;"></div>
+            <div class="realisatie" style="background: url('https://impro.usercontent.one/appid/oneComWsb/domain/chocladore.be/media/chocladore.be/onewebmedia/web27.jpg?etag=%2238ae5-62128e41%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=2000,1500&quality=85');background-size:cover;"></div>
+            <div class="realisatie" style="background: url('https://impro.usercontent.one/appid/oneComWsb/domain/chocladore.be/media/chocladore.be/onewebmedia/web29.jpg?etag=%221734e-62128e23%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=1000,1239&quality=85');background-size:cover;"></div>
+            <div class="realisatie" style="background: url('https://impro.usercontent.one/appid/oneComWsb/domain/chocladore.be/media/chocladore.be/onewebmedia/web31.jpg?etag=%2226cd0-62128e2b%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=2000,1713&quality=85');background-size:cover;"></div>
+            <div class="realisatie" style="background: url('https://impro.usercontent.one/appid/oneComWsb/domain/chocladore.be/media/chocladore.be/onewebmedia/web8.jpg?etag=%221c2f2-62128e13%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=1000,1052&quality=85');background-size:cover;"></div>
+            <div class="realisatie" style="background: url('https://impro.usercontent.one/appid/oneComWsb/domain/chocladore.be/media/chocladore.be/onewebmedia/web9.jpg?etag=%2241031-62128e2f%22&sourceContentType=image%2Fjpeg&ignoreAspectRatio&resize=2000,1447&quality=85');background-size:cover;"></div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div id="contactinfo">
+            <h1 class="accenttext">Mail:</h1>
+            <a href='mailto:info@chocladore.be' target="_blank"><h2>info@chocladore.be</h2></a>
+            <br>
+            <h1 class="accenttext">GSM:</h1>
+            <a href='tel:+32 486 90 03 63' target="_blank"><h2>+32 486 90 03 63</h2></a>
+            <br>
+            <h1 class="accenttext">Adres:</h1>
+            <a href="https://www.google.com/maps/search/?api=1&query=%22Chocolaterie%20Chocl%27adore%20%2C%20Koordhoekstraat%2026%2C%208610%20Zarren%20-%20Kortemark%2C%20Belgium%22" target="_blank">
+                <h2>
+Chocolaterie Chocl'adore 
+Koordhoekstraat 26<br>
+8610 Zarren - Kortemark<br>
+Belgium
+                </h2>
+            </a>
+        </div>
+        <div id="kaart">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2510.0434734876953!2d2.9592954000000002!3d51.0153457!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47dcb500632da8b7%3A0x1b9033193cf0505c!2zQ2hvY2zigJlhZG9yZQ!5e0!3m2!1snl!2sbe!4v1751285672921!5m2!1snl!2sbe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+    <section id="faq">
+        <div id="questions">
+        <details>
+            <summary>Allergenen en Gluten?</summary>
+                <div class="antwoord">
+                    Voor informatie omtrent allergenen en gluten kan je ons contacteren via mail info@chocladore.be
+                </div>
+        </details>
+        <br>
+        <details>
+            <summary>Kan ik mijn bestelling nog annuleren?</summary>
+                <div class="antwoord">
+                    Neem zo snel mogelijk contact op. Indien de bestelling verwerkt wordt, kan deze helaas niet meer geannuleerd worden.
+                </div>
+        </details>
+        <br>
+        <details>
+            <summary>Kan ik ook een telefonische bestelling plaatsen?</summary>
+                <div class="antwoord">
+                    Uit ervaring weten wij dat telefonische bestellingen sneller een fout bevatten. Daarom raden we aan om zoveel mogelijk te bestellen via onze website. Alvast bedankt!
+                </div>
+        </details>
+        <br>
+        <details>
+            <summary>Wat moet ik doen wanneer mijn bestelling niet juist is?</summary>
+                <div class="antwoord">
+We streven ernaar correcte bestellingen te overhandigen maar soms kan er iets mislopen. We raden aan om ons dan onmiddellijk op de hoogte te brengen via het contactformulier. Je mag een snelle oplossing verwachten.
+We zijn ook steeds telefonisch bereikbaar.
+                </div>
+        </details>
+        </div>
+    </section>
+
+    <script>
+        var menu = 0;
+
+        function sectionchange(welk){
+            document.getElementById("home").style.display = "none";
+            document.getElementById("realisaties").style.display = "none";
+            document.getElementById("contact").style.display = "none";
+            document.getElementById("faq").style.display = "none";
+
+            document.getElementById(welk).style.display = "flex";
+
+
+            document.getElementById("homenav").style.color = "black";
+            document.getElementById("realisatiesnav").style.color = "black";
+            document.getElementById("contactnav").style.color = "black";
+            document.getElementById("faqnav").style.color = "black";
+
+            document.getElementById("mobilehomenav").style.color = "black";
+            document.getElementById("mobilerealisatiesnav").style.color = "black";
+            document.getElementById("mobilecontactnav").style.color = "black";
+            document.getElementById("mobilefaqnav").style.color = "black";
+
+            document.getElementById(welk + "nav").style.color = "#e97132";
+            document.getElementById("mobile" + welk + "nav").style.color = "#e97132";
+        }
+
+        function openmenu(){
+            if(menu === 0){
+                document.getElementById('blur').style.display = "flex";
+                menu = 1;
+            } else{
+                document.getElementById('blur').style.display = "none";
+                menu = 0;
+            }
+        }
+    </script>
+</body>
+</html>
