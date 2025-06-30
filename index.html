@@ -192,6 +192,7 @@
         summary:hover{
             background-color:rgb(245, 245, 245);
             transition:0.3s;
+            width:100%;
         }
 
         .antwoord:hover{
@@ -204,7 +205,12 @@
             transition: 0.3s;
         }
 
+        details[open] summary{
+            width:100%;
+        }
+
         summary{
+            width:100%;
             list-style: none;
             padding:1vw;
             background-color:white;
@@ -226,14 +232,14 @@
             font-family: "Inter", sans-serif;
             /*background-color:white;*/
             transition:0.2s;
-            display:flex;
+            display:block;
             justify-content:center;
         }
 
         details[open] div{
             background-color:rgba(255, 255, 255, 0.923);
             width:90%;
-            margin-left:calc(10% - 2vw);
+            margin-left:calc(10%);
             padding:1vw;
             outline:1.7px solid black;
             border-radius:5px;
@@ -352,6 +358,7 @@
             background-color: white;
         }
         summary{
+            width:100%;
             font-size:3vw;
             padding-top:3vw;
             padding-bottom:3vw;
