@@ -184,7 +184,9 @@
         summary:after{
             content: "\002B";
             position:absolute;
+            top:50%;
             right:1%;
+            transform: translate(-50%,-50%);
             transition: 0.3s;
             cursor:pointer;
         }
@@ -201,7 +203,7 @@
         }
 
         details[open] summary:after{
-            transform:rotate(45deg);
+            transform:  translate(-50%,-50%) rotate(45deg);
             transition: 0.3s;
         }
 
@@ -223,6 +225,7 @@
             transition:0.2s;
             user-select: none;
             -webkit-user-select: none;
+            position:relative;
         }
 
         details{
@@ -294,7 +297,7 @@
             font-weight:500;
             position:absolute;
             left:50%;
-            top:90vh;
+            top:92vh;
             transform: translate(-50%, 0%);
             width:93dvw;
             padding:2vw;
@@ -370,12 +373,12 @@
         }
         summary{
             width:100%;
-            font-size:3vw;
+            font-size:3.5vw;
             padding-top:3vw;
             padding-bottom:3vw;
         }
         details{
-            font-size:3vw;
+            font-size:3.5vw;
         }
         details[open] div{
             padding:1vw;
