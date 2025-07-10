@@ -261,6 +261,21 @@
             z-index:999;
         }
 
+        #mobilelogo{
+            height: 10vw;
+            width:10vw;
+            border-radius:12px;
+            background:url(logocirc.png);
+            background-size: cover;
+            background-position: center;
+            position:fixed;
+            left:6vw;
+            top:6vw;
+            display:none;
+            z-index:999;
+            /*outline: 3px solid black;*/   
+        }
+
         #mobilemenu{
             display:none;
         }
@@ -390,6 +405,10 @@
             display:flex;
             z-index:999;
         }
+        #mobilelogo{
+            display:flex;
+            z-index:999;
+        }
         #mobilemenu{
             width:95dvw;
             height:95dvh;
@@ -439,6 +458,7 @@
         </div>
     </div>
     <div id="hamburger" onclick="openmenu()"></div>
+    <div id="mobilelogo" onclick="sectionchange('home')"></div>
     <div id="blur" onclick="openmenu()">
         <div id="mobilemenu">
             <h1 id="mobilehomenav" onclick="sectionchange('home')" >Home</h1>
