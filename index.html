@@ -76,10 +76,11 @@
         #hero{
             width:50vw;
             text-align:left;
-            position:absolute;
-            left:50%;
-            top:47%;
-            transform: translate(-50%,-50%);
+            position: relative;
+            top: auto;
+            left: auto;
+            transform: none;
+            margin: auto;
         }
 
         #hero h1{
@@ -132,10 +133,14 @@
             border-radius:15px;
             background-color:white;
             border:1.7px solid black;
+            margin-bottom:2vw;
         }
 
         #home{
-            height:184vh;
+            /*height:184vh;*/
+            height:auto;
+            min-height:100vh;
+            padding-bottom:1vw;
         }
 
         #contactinfo{
@@ -269,24 +274,27 @@
             height:7vw;
             position:fixed;
             right:6vw;
-            top:6vw;
+            /*top:7vw;*/
             display:none;
             z-index:999;
+            /*transform:translate(-50%,-50%);*/ 
         }
 
         #mobilelogo{
             height: 10vw;
             width:10vw;
-            border-radius:12px;
+            border-radius:50px;
             background:url(logocirc.png);
             background-size: cover;
             background-position: center;
             position:fixed;
             left:6vw;
-            top:6vw;
+            /*top:6vw;*/
             display:none;
             z-index:999;
-            /*outline: 3px solid black;*/   
+            outline: 1px solid black;   
+            /*transform:translate(-50%,-50%);*/
+            /*transform:translate(-0%,-50%);*/
         }
 
         #mobilemenu{
@@ -297,13 +305,57 @@
             display:none;
         }
 
+        #mobilenaam{
+            display:none;
+            color:black;
+            font-family: "Inter", sans-serif;
+            font-size:3.5vw;
+            font-weight:400;
+            padding: 1.8vw;
+            border-radius:15px;
+            outline:1.5px solid black;
+            position:fixed;
+            left:50%;
+            /*top:6vw;*/
+            transform:translate(-50%,0%);
+            background: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0.2));
+            transition: 0.2s;
+            backdrop-filter: blur(5px);
+            z-index:999;
+        }
+
+        #mobilenav{
+            width:98vw;
+            margin-left:1vw;
+            height:11vw;
+            display:none;
+            z-index:999;
+            align-items:center;
+            position:fixed;
+            top:2vw;
+        }
+
         @media only screen and (max-width: 740px) {
+            #mobilenav{
+                display:flex;
+            }
+
+            #mobilenaam{
+                display:flex;
+            }
+
             #navbar{
                 display:none;
             }
 
         #hero{
             width:auto;
+            width:50vw;
+            text-align:left;
+            position:absolute;
+            left:50%;
+            top:47%;
+            transform: translate(-50%,-50%);
         }
 
         #home h1{
@@ -479,8 +531,11 @@
             <h3 class="navtext" id="faqnav" onclick="sectionchange('faq')" >FAQ</h3>
         </div>
     </div>
+    <div id="mobilenav">
     <div id="hamburger" onclick="openmenu()"></div>
     <div id="mobilelogo" onclick="sectionchange('home')"></div>
+    <h1 id="mobilenaam">Chocl'adore</h1>
+    </div>
     <div id="blur" onclick="openmenu()">
         <div id="mobilemenu">
             <h1 id="mobilehomenav" onclick="sectionchange('home')" >Home</h1>
